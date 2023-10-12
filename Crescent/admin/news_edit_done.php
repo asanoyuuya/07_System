@@ -2,7 +2,7 @@
 
 session_start();
 require_once(dirname(__FILE__) . '/auth.inc.php');
-$loingVerfiy = authConfirm();
+authConfirm();
 
 require_once(dirname(__FILE__) . '/../util.inc.php');
 
