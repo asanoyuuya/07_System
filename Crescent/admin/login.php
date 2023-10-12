@@ -3,8 +3,12 @@
 session_start();
 
 require_once(dirname(__FILE__) . '/../Models/Auth.php');
-/*require_once(dirname(__FILE__) . '/../util.inc.php');*/
+require_once(dirname(__FILE__) . '/../util.inc.php');
 
+if (isset($_SESSION['authenticated']) && (isset($_SESSION['login_id']))) {
+    header('Location: index.php');
+    exit;
+}
 
 $isValidated = false;
 $login_id    = '';
@@ -77,11 +81,11 @@ if (!empty($_POST)) {
                 <table class="loginbox">
                     <tr>
                         <th>ログインID</th>
-                        <td><input type="text" name="login_id"></td>
+                        <td><input type="text" name="login_id" value="<?=h($login_id)?>"></td>
                     </tr>
                     <tr>
                         <th>パスワード</th>
-                        <td><input type="password" name="login_pass"></td>
+                        <td><input type="password" name="login_pass" value="<?=h($login_pass)?>"></td>
                     </tr>
                 </table>
                 <p>
